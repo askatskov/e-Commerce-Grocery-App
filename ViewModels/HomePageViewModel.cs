@@ -15,6 +15,7 @@ namespace ViewModels
         public HomePageViewModel(CategoryService categoryService)
         {
             _categoryService = categoryService;
+            Categories = new ObservableCollection<Category>();
         }
 
         public ObservableCollection<Category> Categories {  get; set; }
