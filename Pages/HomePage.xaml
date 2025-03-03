@@ -2,11 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pages.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="HomePage"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:HomePageViewModel"
+             xmlns:vm="clr-namespace:ViewModels"
+             xmlns:models="clr-namespace:Models">
+
+    <VerticalStackLayout Padding="10, 15">
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Hi, &#10;"
+                          TextColor="DarkGrey"
+                          FontSize="15"/>
+                    <Span Text="Abhay" 
+                          TextColor="{StaticResource Mid}"
+                          FontSize="18"
+                          FontAttributes="Bold"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </VerticalStackLayout>
 </ContentPage>

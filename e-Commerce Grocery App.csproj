@@ -62,6 +62,19 @@
 	  <None Remove="Resources\Images\bxs_home.png" />
 	  <None Remove="Resources\Images\bxs_list.png" />
 	  <None Remove="Resources\Images\bxs_user.png" />
+	  <None Remove="Resources\Images\cheese.jpg" />
+	  <None Remove="Resources\Images\dairy.jpg" />
+	  <None Remove="Resources\Images\egg.jpg" />
+	  <None Remove="Resources\Images\exotic_fruits.jpg" />
+	  <None Remove="Resources\Images\fruits.jpg" />
+	  <None Remove="Resources\Images\green_vegetables.jpg" />
+	  <None Remove="Resources\Images\leafy_vegetables.jpg" />
+	  <None Remove="Resources\Images\meat.jpg" />
+	  <None Remove="Resources\Images\milk.jpg" />
+	  <None Remove="Resources\Images\salads.jpg" />
+	  <None Remove="Resources\Images\seafood.jpg" />
+	  <None Remove="Resources\Images\seasonal_fruits.jpg" />
+	  <None Remove="Resources\Images\vegetables.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

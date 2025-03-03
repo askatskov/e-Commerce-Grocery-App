@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Pages;
+using Services;
+using ViewModels;
 
 namespace e_Commerce_Grocery_App
 {
@@ -16,6 +19,9 @@ namespace e_Commerce_Grocery_App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
             .UseMauiCommunityToolkit();
+            builder.Services.AddSingleton<CategoryService>();
+            builder.Services.AddSingleton<HomePageViewModel>();
+            builder.Services.AddSingleton<HomePage>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
