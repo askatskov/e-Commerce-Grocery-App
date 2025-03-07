@@ -96,13 +96,14 @@
                                     Padding="10"
                                     Margin="5">
                                 
-                            </Border>
+                            
 
                             <Label Text="{Binding Name}" 
                                    FontAttributes="Bold"
                                    FontSize="16"
                                    HorizontalTextAlignment="Center"
                                    TextColor="{StaticResource Mid}"/>
+                            </Border>
                         </Grid>
                     </Border>
                 </DataTemplate>
