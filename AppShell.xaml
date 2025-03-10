@@ -10,7 +10,8 @@
     xmlns:pages="clr-namespace:Pages"
     Shell.TabBarBackgroundColor="{StaticResource Mid}"
     Shell.TabBarTitleColor="{StaticResource White}"
-    Shell.BackgroundColor="{StaticResource Mid}">
+    Shell.BackgroundColor="{StaticResource Mid}"
+    Shell.TabBarForegroundColor="{StaticResource White}">
 
     <Shell.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" />
