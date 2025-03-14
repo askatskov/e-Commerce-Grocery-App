@@ -1,21 +1,22 @@
 using e_Commerce_Grocery_App.Api.Constants;
 using e_Commerce_Grocery_App.Api.Data;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace e_Commerce_Grocery_App.Api
 {
-    public class Program
-{
-	public static void Main(string[] args)
+	public class Program
 	{
-		var builder = WebApplication.CreateBuilder(args);
+		public static void Main(string[] args)
+		{
+			var builder = WebApplication.CreateBuilder(args);
 
-		// Add services to the container.
-		builder.Services.AddAuthorization();
+			// Add services to the container.
+			builder.Services.AddAuthorization();
 
-		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-		builder.Services.AddEndpointsApiExplorer();
-		builder.Services.AddSwaggerGen();
+			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+			builder.Services.AddEndpointsApiExplorer();
+			builder.Services.AddSwaggerGen();
 
 			builder.Services.AddDbContext<DataContext>(options =>
 			options.UseSqlServer(builder.Configuration.GetConnectionString(DatabaseConstants.GroceryConnectionStringKey)));
@@ -23,38 +24,38 @@ namespace e_Commerce_Grocery_App.Api
 
 			var app = builder.Build();
 
-		// Configure the HTTP request pipeline.
-		if (app.Environment.IsDevelopment())
-		{
-			app.UseSwagger();
-			app.UseSwaggerUI();
-		}
+			// Configure the HTTP request pipeline.
+			if (app.Environment.IsDevelopment())
+			{
+				app.UseSwagger();
+				app.UseSwaggerUI();
+			}
 
-		app.UseHttpsRedirection();
+			app.UseHttpsRedirection();
 
-		app.UseAuthorization();
+			app.UseAuthorization();
 
-		var summaries = new[]
-		{
+			var summaries = new[]
+			{
 				"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 			};
 
-		app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-		{
-			var forecast = Enumerable.Range(1, 5).Select(index =>
-				new WeatherForecast
-				{
-					Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-					TemperatureC = Random.Shared.Next(-20, 55),
-					Summary = summaries[Random.Shared.Next(summaries.Length)]
-				})
-				.ToArray();
-			return forecast;
-		})
-		.WithName("GetWeatherForecast")
-		.WithOpenApi();
+			app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+			{
+				var forecast = Enumerable.Range(1, 5).Select(index =>
+					new WeatherForecast
+					{
+						Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+						TemperatureC = Random.Shared.Next(-20, 55),
+						Summary = summaries[Random.Shared.Next(summaries.Length)]
+					})
+					.ToArray();
+				return forecast;
+			})
+			.WithName("GetWeatherForecast")
+			.WithOpenApi();
 
-		app.Run();
+			app.Run();
+		}
 	}
-}
 }
