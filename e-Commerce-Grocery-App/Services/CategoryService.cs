@@ -14,7 +14,6 @@ namespace Services
         private IEnumerable<Category>? _categories;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        // Constructor to inject IHttpClientFactory
         public CategoryService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
@@ -22,7 +21,6 @@ namespace Services
 
         public async ValueTask<IEnumerable<Category>> GetCategoriesAsync()
         {
-            // If categories are null, fetch from API
             if (_categories is null)
             {
                 var httpClient = _httpClientFactory.CreateClient(AppConstants.HttpClientName);
@@ -33,19 +31,14 @@ namespace Services
                     var content = await response.Content.ReadAsStringAsync();
                     if (!string.IsNullOrEmpty(content))
                     {
-                        // Deserialize JSON to IEnumerable<Category>
                         _categories = JsonSerializer.Deserialize<IEnumerable<Category>>(content);
                     }
                 }
                 else
                 {
-                    // Return an empty collection if the response is not successful
                     return Enumerable.Empty<Category>();
                 }
             }
-
-            // Return the cached categories if not null
-            return _categories ?? Enumerable.Empty<Category>();
         }
     }
 }
