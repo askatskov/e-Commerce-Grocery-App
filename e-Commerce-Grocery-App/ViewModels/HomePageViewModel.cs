@@ -11,7 +11,8 @@ namespace ViewModels
 	public partial class HomePageViewModel : ObservableObject
 	{
 		private readonly CategoryService _categoryService;
-		public HomePageViewModel(CategoryService categoryService)
+		private readonly OffersService _offersService;
+		public HomePageViewModel(CategoryService categoryService, OffersService offersService)
 		{
 			_categoryService = categoryService;
 		}
@@ -20,11 +21,12 @@ namespace ViewModels
 
 		public async Task InitializeAsync()
 		{
-			foreach (var category in await _categoryService.GetMainCategoriesAsync())
+			var offersTask = _offersService.GetActiveOffersAsync();
+			foreach (var category in await _categoryService.GetCategoriesAsync())
 			{
 				Categories.Add(category);
 			}
-			foreach (var offer in Offer.GetOffers())
+			foreach (var offer in await offersTask)
 			{
 				Offers.Add(offer);
 			}

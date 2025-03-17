@@ -35,27 +35,21 @@ namespace e_Commerce_Grocery_App.Api
 
 			app.UseAuthorization();
 
-			var summaries = new[]
-			{
-				"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-			};
+var masterGroup = app.MapGroup("/masters").AllowAnonymous();
 
-			app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-			{
-				var forecast = Enumerable.Range(1, 5).Select(index =>
-					new WeatherForecast
-					{
-						Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-						TemperatureC = Random.Shared.Next(-20, 55),
-						Summary = summaries[Random.Shared.Next(summaries.Length)]
-					})
-					.ToArray();
-				return forecast;
-			})
-			.WithName("GetWeatherForecast")
-			.WithOpenApi();
+masterGroup.MapGet("/categories", async (DataContext context) =>
+	await context.Categories
+	.AsNoTracking()
+	.ToArrayAsync()
+);
 
-			app.Run();
+masterGroup.MapGet("/offers", async (DataContext context) =>
+	await context.Categories
+	.AsNoTracking()
+	.ToArrayAsync());
+
+
+            app.Run("https://localhost:12345");
 		}
 	}
 }
